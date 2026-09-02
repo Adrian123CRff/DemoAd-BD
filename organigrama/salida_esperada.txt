@@ -1,0 +1,33 @@
+NIVEL  ORGANIGRAMA                                          ES_HOJA
+--------------------------------------------------------------------
+    1  Elena Vargas Rojas                                         0
+    2     Andres Castro Lobo                                      0
+    3        Mauricio Vega Chinchilla                             1
+    3        Silvia Araya Gomez                                   1
+    2     Karla Jimenez Mora                                      0
+    3        Ignacio Fallas Sandi                                 1
+    3        Rebeca Morales Cubero                                1
+    2     Marco Solis Pena                                        0
+    3        Alonso Picado Solis                                  1
+    3        Diego Ramirez Soto                                   0
+    4           Sofia Quesada Ruiz                                0
+    5              Camila Rojas Aguilar                           1
+    5              Javier Urena Delgado                           1
+    5              Natalia Brenes Campos                          1
+    4           Tomas Alvarado Cruz                               0
+    5              Fabian Chaves Montero                          1
+    5              Gabriela Perez Umana                           1
+    3        Lucia Herrera Vega                                   0
+    4           Rodrigo Salas Fonseca                             0
+    5              Paula Guzman Leiva                             1
+    5              Ricardo Bonilla Zamora                         1
+    4           Valeria Mena Solano                               0
+    5              Adrian Segura Navarro                          1
+    5              Esteban Villalobos Saenz                       1
+    5              Mariana Cordero Blanco                         1
+    3        Pablo Nunez Arias                                    0
+    4           Daniela Espinoza Barrantes                        1
+    4           Marcela Zuniga Fallas                             1
+    4           Oscar Madrigal Rivera                             1
+
+29 filas seleccionadas.
