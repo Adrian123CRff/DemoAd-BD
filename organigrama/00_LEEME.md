@@ -143,7 +143,9 @@ del trabajo.**
 permiten `CREATE TABLESPACE` — Autonomous administra el almacenamiento por su cuenta y
 devuelve `ORA-01031: insufficient privileges` si se intenta. Por eso también quedan fuera
 `USING INDEX TABLESPACE`, la verificación contra `USER_SEGMENTS` y la prueba de
-`EXPLAIN PLAN` del script 05.
+`EXPLAIN PLAN` del script 05. **Tampoco corre el `06`**: LiveSQL no da acceso a ninguna
+vista `V$`, así que la bitácora, los archivos de control y los parámetros no son
+observables desde ahí. Ese anexo necesita sí o sí la ruta A o la B.
 
 > Si presentás por esta ruta, decilo de frente: «el modelo corre en vivo; la separación de
 > tablespaces la mostramos en el script y en el informe, porque este entorno no permite
@@ -163,7 +165,12 @@ lo crea el dueño de los datos.
 | 3 | `03_cargar_datos.sql` | `org_app` | Los datos del organigrama |
 | 4 | `04_demo_consultas.sql` | `org_app` | Las 9 consultas del demo |
 | 5 | `05_demo_indice_fk.sql` | `org_app` | La prueba del índice sobre la FK |
+| 6 | `06_bitacora_control_parametros.sql` | `system` | Bitácora, archivos de control, parámetros, SGA y procesos |
 | — | `99_limpiar.sql` | `system` | Deja la base como estaba (para ensayar de nuevo) |
+
+El `06` es de **solo lectura** y se puede correr en cualquier momento, incluso antes del `02`
+(su último paso saldría vacío, nada más). Va como `system` porque `org_app` no ve las vistas
+`V$` —tiene privilegios mínimos, y así debe ser.
 
 ### Con Oracle instalado en Windows (ruta B)
 
@@ -179,6 +186,11 @@ SQL> @02_crear_modelo.sql
 SQL> @03_cargar_datos.sql
 SQL> @04_demo_consultas.sql
 SQL> @05_demo_indice_fk.sql
+SQL> exit
+
+REM  --- paso 6, otra vez como SYSTEM (vistas V$) ---
+sqlplus system/TU_CLAVE@localhost:1521/FREEPDB1
+SQL> @06_bitacora_control_parametros.sql
 ```
 
 Si no querés escribir la clave en la línea de comandos:
@@ -218,6 +230,7 @@ en el `@`.
 |---|---|
 | `00_LEEME.md` | Este archivo |
 | `01` a `05`, `99` | El demo completo, para una instancia propia (rutas A y B) |
+| `06_bitacora_control_parametros.sql` | Anexo de arquitectura física: redo log, control files, parámetros, SGA, procesos |
 | `10_livesql_todo_en_uno.sql` | El demo en una sola pieza, sin tablespaces (ruta C) |
 | `informe_organigrama.docx` | El informe escrito, 8 páginas. **Falta poner los nombres del grupo.** |
 | `salida_esperada.txt` | La salida exacta del organigrama, para verificar o para el plan B |
